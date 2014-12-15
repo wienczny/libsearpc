@@ -34,7 +34,7 @@ class SampleRpcClient(SearpcClient):
         # connect to server
         s.connect((SERVER_ADDR, SERVER_PORT))
         # send the header
-        header = pack('!h', len(fcall_str)); 
+        header = pack('!h', len(fcall_str))
         s.sendall(header)
         # send the JSON data
         s.sendall(fcall_str)
@@ -44,7 +44,7 @@ class SampleRpcClient(SearpcClient):
         #read the result
         ret_len = list(unpack('!h', header_r))[0]
         if ret_len <= 0:
-            raise AssertionError, "returned data length <=  0"
+            raise AssertionError("returned data length <=  0")
 
         ret_str = recv_all(s, ret_len)
         return ret_str
@@ -55,5 +55,5 @@ class SampleRpcClient(SearpcClient):
 
 client = SampleRpcClient()
 res = client.searpc_strlen("hello world")
-print 'result from server:', res
+print ('result from server:', res)
 
